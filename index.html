@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С Днем Рождения, Сестренка! 🎂</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Главный экран -->
+        <section class="hero" id="hero">
+            <div class="hero-content">
+                <div class="birthday-cake">
+                    <div class="cake">
+                        <div class="candle">
+                            <div class="flame"></div>
+                        </div>
+                    </div>
+                </div>
+                <h1 class="title">С Днем Рождения!</h1>
+                <h2 class="subtitle">Моя любимая сестренка</h2>
+                <div class="hearts">
+                    <span>💖</span>
+                    <span>💕</span>
+                    <span>💗</span>
+                    <span>💓</span>
+                    <span>💝</span>
+                </div>
+                <button class="cta-button" onclick="scrollToSection('wishes')">Открыть поздравления</button>
+            </div>
+        </section>
+
+        <!-- Поздравления -->
+        <section class="wishes" id="wishes">
+            <div class="wishes-content">
+                <h2>Мои пожелания для тебя</h2>
+                <div class="wish-cards">
+                    <div class="wish-card">
+                        <div class="wish-icon">🌟</div>
+                        <h3>Счастья</h3>
+                        <p>Пусть каждый день приносит тебе радость и улыбки!</p>
+                    </div>
+                    <div class="wish-card">
+                        <div class="wish-icon">💫</div>
+                        <h3>Удачи</h3>
+                        <p>Желаю, чтобы все твои мечты сбывались!</p>
+                    </div>
+                    <div class="wish-card">
+                        <div class="wish-icon">🎀</div>
+                        <h3>Красоты</h3>
+                        <p>Оставайся такой же прекрасной и очаровательной!</p>
+                    </div>
+                    <div class="wish-card">
+                        <div class="wish-icon">💝</div>
+                        <h3>Любви</h3>
+                        <p>Пусть тебя окружают только любящие и близкие люди!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Галерея воспоминаний -->
+        <section class="memories" id="memories">
+            <div class="memories-content">
+                <h2>Наши воспоминания</h2>
+                <div class="memory-grid">
+                    <div class="memory-item">
+                        <div class="memory-placeholder">📸</div>
+                        <p>Наше первое фото</p>
+                    </div>
+                    <div class="memory-item">
+                        <div class="memory-placeholder">🎭</div>
+                        <p>Совместные игры</p>
+                    </div>
+                    <div class="memory-item">
+                        <div class="memory-placeholder">🎪</div>
+                        <p>Праздники вместе</p>
+                    </div>
+                    <div class="memory-item">
+                        <div class="memory-placeholder">🌈</div>
+                        <p>Радужные моменты</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Музыкальный плеер -->
+        <section class="music" id="music">
+            <div class="music-content">
+                <h2>Праздничная музыка</h2>
+                <div class="music-player">
+                    <div class="player-controls">
+                        <button class="play-btn" onclick="toggleMusic()">▶️</button>
+                        <div class="song-info">
+                            <h3>Happy Birthday</h3>
+                            <p>Праздничная мелодия</p>
+                        </div>
+                    </div>
+                    <div class="music-options">
+                        <p class="music-note">💡 Совет: Добавьте свою музыку, заменив "ВАША_МУЗЫКА.mp3" в коде</p>
+                        <div class="youtube-player">
+                            <h4>Или включите YouTube музыку:</h4>
+                            <iframe width="300" height="200"
+                                    src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0&controls=1"
+                                    frameborder="0" allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Финальное поздравление -->
+        <section class="final-wish" id="final-wish">
+            <div class="final-content">
+                <h2>С Днем Рождения, Сестренка!</h2>
+                <p class="final-message">
+                    Ты - самое дорогое, что у меня есть.
+                    Спасибо за все моменты, которые мы провели вместе.
+                    Желаю тебе бесконечного счастья, любви и успехов во всем!
+                </p>
+                <div class="sparkles">
+                    <span>✨</span>
+                    <span>🎉</span>
+                    <span>🎊</span>
+                    <span>🎈</span>
+                    <span>🎁</span>
+                </div>
+                <button class="restart-btn" onclick="scrollToSection('hero')">Начать заново</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Фоновая музыка -->
+    <audio id="bgMusic" loop>
+        <source src="ВАША_МУЗЫКА.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
