@@ -20,13 +20,34 @@ function toggleMusic() {
         playBtn.textContent = '▶️';
         isPlaying = false;
     } else {
-        audio.play().catch(e => {
-            console.log('Автовоспроизведение заблокировано браузером');
-        });
-        playBtn.textContent = '⏸️';
-        isPlaying = true;
+        // Попытка воспроизвести музыку
+        const playPromise = audio.play();
+
+        if (playPromise !== undefined) {
+            playPromise.then(() => {
+                playBtn.textContent = '⏸️';
+                isPlaying = true;
+                console.log('Музыка начала играть');
+            }).catch(error => {
+                console.log('Ошибка воспроизведения:', error);
+                // Показать сообщение пользователю
+                alert('Музыка не может воспроизводиться. Попробуйте YouTube плеер ниже!');
+                playBtn.textContent = '❌';
+            });
+        }
     }
 }
+
+// Проверка загрузки аудио
+audio.addEventListener('loadeddata', function() {
+    console.log('Аудио файл загружен успешно');
+});
+
+audio.addEventListener('error', function(e) {
+    console.log('Ошибка загрузки аудио:', e);
+    playBtn.textContent = '❌';
+    playBtn.style.background = '#ff4444';
+});
 
 // Анимация появления элементов при прокрутке
 function animateOnScroll() {
@@ -268,3 +289,49 @@ document.head.appendChild(snowStyle);
 
 // Запуск снежинок каждые 4 секунды
 setInterval(createSnowflakes, 4000);
+
+// Случайные комплименты
+const compliments = [
+    "Ты самая лучшая сестра в мире! 💖",
+    "Твоя улыбка освещает весь мир! ✨",
+    "Ты невероятно талантливая! 🌟",
+    "С тобой никогда не скучно! 😄",
+    "Ты самая красивая! 👑",
+    "Твоя доброта покоряет сердца! 💝",
+    "Ты моя гордость! 🏆",
+    "С тобой все становится лучше! 🌈",
+    "Ты настоящая принцесса! 👸",
+    "Твоя энергия заразительна! ⚡",
+    "Ты самая умная! 🧠",
+    "Твоя сила вдохновляет! 💪",
+    "Ты самая заботливая! 🤗",
+    "Твоя душа прекрасна! 🌸",
+    "Ты моя лучшая подруга! 👯‍♀️"
+];
+
+function showRandomCompliment() {
+    const complimentText = document.getElementById('compliment-text');
+    const randomCompliment = compliments[Math.floor(Math.random() * compliments.length)];
+
+    // Анимация появления
+    complimentText.style.opacity = '0';
+    complimentText.style.transform = 'scale(0.8)';
+
+    setTimeout(() => {
+        complimentText.textContent = randomCompliment;
+        complimentText.style.opacity = '1';
+        complimentText.style.transform = 'scale(1)';
+
+        // Добавляем эффект конфетти при получении комплимента
+        createConfetti();
+    }, 300);
+}
+
+// Добавляем стили для анимации комплиментов
+const complimentStyle = document.createElement('style');
+complimentStyle.textContent = `
+    #compliment-text {
+        transition: all 0.3s ease;
+    }
+`;
+document.head.appendChild(complimentStyle);
