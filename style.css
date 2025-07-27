@@ -176,19 +176,45 @@ section {
 }
 
 .wishes {
-    background: linear-gradient(135deg, #f8bbd9, #f3e5f5);
+    background: linear-gradient(135deg, #fce4ec, #f3e5f5);
+    position: relative;
+}
+
+.wishes::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.1);
+    pointer-events: none;
 }
 
 .wishes-content {
     max-width: 1200px;
     text-align: center;
+    position: relative;
+    z-index: 2;
 }
 
 .wishes h2 {
-    font-size: 3rem;
+    font-size: 4rem;
     color: #e91e63;
     margin-bottom: 3rem;
-    font-weight: 600;
+    font-weight: 700;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+    letter-spacing: 2px;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 3px 3px 6px rgba(0,0,0,0.2), 0 0 20px rgba(233, 30, 99, 0.3);
+    }
+    to {
+        text-shadow: 3px 3px 6px rgba(0,0,0,0.2), 0 0 30px rgba(233, 30, 99, 0.6);
+    }
 }
 
 .wish-cards {
@@ -236,13 +262,13 @@ section {
     line-height: 1.6;
 }
 
-/* Воспоминания */
+/* Наше фото */
 .memories {
     background: linear-gradient(135deg, #e8eaf6, #f3e5f5);
 }
 
 .memories-content {
-    max-width: 1200px;
+    max-width: 1000px;
     text-align: center;
 }
 
@@ -253,40 +279,183 @@ section {
     font-weight: 600;
 }
 
-.memory-grid {
+.our-photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.photo-container {
+    position: relative;
+    max-width: 600px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.photo-container:hover {
+    transform: scale(1.02);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+
+.main-photo {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.photo-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(156, 39, 176, 0.8));
+    color: white;
+    padding: 2rem 1rem 1rem;
+    text-align: center;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.photo-container:hover .photo-overlay {
+    transform: translateY(0);
+}
+
+.photo-overlay p {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+/* Забавные факты */
+.fun-facts {
+    background: linear-gradient(135deg, #fce4ec, #f8bbd9);
+}
+
+.fun-facts-content {
+    max-width: 1200px;
+    text-align: center;
+}
+
+.fun-facts h2 {
+    font-size: 3rem;
+    color: #e91e63;
+    margin-bottom: 3rem;
+    font-weight: 600;
+}
+
+.facts-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
 }
 
-.memory-item {
+.fact-card {
     background: white;
     padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
-    animation: fadeIn 1s ease-out;
+    animation: bounceIn 0.8s ease-out;
 }
 
-.memory-item:hover {
-    transform: scale(1.05);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+.fact-card:hover {
+    transform: translateY(-10px) rotate(2deg);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
 
-.memory-placeholder {
-    font-size: 4rem;
+.fact-icon {
+    font-size: 3rem;
     margin-bottom: 1rem;
-    animation: rotate 4s linear infinite;
+    animation: wiggle 2s ease-in-out infinite;
 }
 
-@keyframes rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+@keyframes wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(5deg); }
+    75% { transform: rotate(-5deg); }
 }
 
-.memory-item p {
+@keyframes bounceIn {
+    0% { transform: scale(0.3); opacity: 0; }
+    50% { transform: scale(1.05); }
+    70% { transform: scale(0.9); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.fact-card h3 {
+    font-size: 1.3rem;
+    color: #9c27b0;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.fact-card p {
     color: #666;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+/* Комплименты */
+.compliments {
+    background: linear-gradient(135deg, #e8eaf6, #f3e5f5);
+}
+
+.compliments-content {
+    max-width: 800px;
+    text-align: center;
+}
+
+.compliments h2 {
+    font-size: 3rem;
+    color: #9c27b0;
+    margin-bottom: 3rem;
+    font-weight: 600;
+}
+
+.compliment-box {
+    background: white;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    margin-top: 2rem;
+}
+
+#compliment-text {
+    font-size: 1.5rem;
+    color: #e91e63;
+    margin-bottom: 2rem;
     font-weight: 500;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.compliment-btn {
+    background: linear-gradient(45deg, #e91e63, #9c27b0);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+    font-weight: 600;
+}
+
+.compliment-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(233, 30, 99, 0.4);
+}
+
+.compliment-btn:active {
+    transform: translateY(-1px) scale(1.02);
 }
 
 /* Музыка */
@@ -360,17 +529,17 @@ section {
     font-size: 0.9rem;
 }
 
-.youtube-player {
+.rutube-player {
     margin-top: 1rem;
 }
 
-.youtube-player h4 {
+.rutube-player h4 {
     color: #e91e63;
     margin-bottom: 1rem;
     font-size: 1.1rem;
 }
 
-.youtube-player iframe {
+.rutube-player iframe {
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     max-width: 100%;
