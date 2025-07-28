@@ -9,6 +9,11 @@ function scrollToSection(sectionId) {
     }
 }
 
+// Оптимизация для мобильных устройств
+function isMobile() {
+    return window.innerWidth <= 768;
+}
+
 // Музыкальный плеер
 let isPlaying = false;
 const audio = document.getElementById('bgMusic');
@@ -72,8 +77,10 @@ function animateOnScroll() {
     });
 }
 
-// Создание конфетти
+// Создание конфетти (оптимизировано для мобильных)
 function createConfetti() {
+    if (isMobile()) return; // Не создаем конфетти на мобильных
+
     const colors = ['#e91e63', '#9c27b0', '#fce4ec', '#f3e5f5', '#e8eaf6'];
 
     for (let i = 0; i < 50; i++) {
@@ -104,8 +111,10 @@ function createConfetti() {
     }
 }
 
-// Создание сердечек
+// Создание сердечек (оптимизировано для мобильных)
 function createHearts() {
+    if (isMobile()) return; // Не создаем сердечки на мобильных
+
     const heart = document.createElement('div');
     heart.innerHTML = '💖';
     heart.style.position = 'fixed';
@@ -128,11 +137,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Запуск анимаций
     animateOnScroll();
 
-    // Создание конфетти каждые 3 секунды
-    setInterval(createConfetti, 3000);
+    // Создание конфетти каждые 3 секунды (только на десктопе)
+    if (window.innerWidth > 768) {
+        setInterval(createConfetti, 3000);
+    }
 
-    // Создание сердечек каждые 2 секунды
-    setInterval(createHearts, 2000);
+    // Создание сердечек каждые 2 секунды (только на десктопе)
+    if (window.innerWidth > 768) {
+        setInterval(createHearts, 2000);
+    }
 
     // Добавление эффекта параллакса для фона
     window.addEventListener('scroll', function() {
@@ -252,8 +265,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Функция для создания снежинок (альтернатива конфетти)
+// Функция для создания снежинок (альтернатива конфетти, оптимизировано для мобильных)
 function createSnowflakes() {
+    if (isMobile()) return; // Не создаем снежинки на мобильных
+
     const snowflake = document.createElement('div');
     snowflake.innerHTML = '❄️';
     snowflake.style.position = 'fixed';
@@ -287,8 +302,10 @@ snowStyle.textContent = `
 `;
 document.head.appendChild(snowStyle);
 
-// Запуск снежинок каждые 4 секунды
-setInterval(createSnowflakes, 4000);
+// Запуск снежинок каждые 4 секунды (только на десктопе)
+if (window.innerWidth > 768) {
+    setInterval(createSnowflakes, 4000);
+}
 
 // Случайные комплименты
 const compliments = [
@@ -391,4 +408,18 @@ setInterval(autoSlide, 5000);
 // Инициализация галереи при загрузке страницы
 document.addEventListener('DOMContentLoaded', function() {
     showSlide(0);
+});
+
+// Обработчик изменения размера окна для мобильной оптимизации
+window.addEventListener('resize', function() {
+    // Перезапуск анимаций при изменении размера окна
+    if (window.innerWidth <= 768) {
+        // Остановка тяжелых анимаций на мобильных
+        const confettiElements = document.querySelectorAll('[style*="position: fixed"][style*="z-index: 1000"]');
+        confettiElements.forEach(el => {
+            if (el.style.animation) {
+                el.remove();
+            }
+        });
+    }
 });
