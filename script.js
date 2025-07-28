@@ -335,3 +335,60 @@ complimentStyle.textContent = `
     }
 `;
 document.head.appendChild(complimentStyle);
+
+// Функции для галереи "Как мы растём"
+let currentSlideIndex = 0;
+const slides = document.querySelectorAll('.photo-slide');
+const dots = document.querySelectorAll('.dot');
+
+function showSlide(index) {
+    // Скрываем все слайды
+    slides.forEach(slide => {
+        slide.classList.remove('active');
+    });
+
+    // Убираем активный класс со всех точек
+    dots.forEach(dot => {
+        dot.classList.remove('active');
+    });
+
+    // Показываем нужный слайд и активируем точку
+    if (slides[index]) {
+        slides[index].classList.add('active');
+    }
+    if (dots[index]) {
+        dots[index].classList.add('active');
+    }
+
+    currentSlideIndex = index;
+}
+
+function changeSlide(direction) {
+    let newIndex = currentSlideIndex + direction;
+
+    // Зацикливаем слайды
+    if (newIndex >= slides.length) {
+        newIndex = 0;
+    } else if (newIndex < 0) {
+        newIndex = slides.length - 1;
+    }
+
+    showSlide(newIndex);
+}
+
+function currentSlide(index) {
+    showSlide(index - 1);
+}
+
+// Автоматическое переключение слайдов каждые 5 секунд
+function autoSlide() {
+    changeSlide(1);
+}
+
+// Запускаем автопереключение
+setInterval(autoSlide, 5000);
+
+// Инициализация галереи при загрузке страницы
+document.addEventListener('DOMContentLoaded', function() {
+    showSlide(0);
+});
