@@ -76,6 +76,63 @@
             </div>
         </section>
 
+        <!-- Как мы растём -->
+        <section class="growth" id="growth">
+            <div class="growth-content">
+                <h2>Как мы растём вместе 🌱</h2>
+                <div class="growth-gallery">
+                    <div class="gallery-container">
+                        <div class="photo-slide active">
+                            <img src="f1.jpg" alt="Мы маленькие" class="gallery-photo">
+                            <div class="photo-info">
+                                <h3>Наши первые годы</h3>
+                                <p>Когда мы были совсем малышами (я)</p>
+                            </div>
+                        </div>
+                        <div class="photo-slide">
+                            <img src="f2.jpg" alt="Мы подрастаем" class="gallery-photo">
+                            <div class="photo-info">
+                                <h3>Мы подрастаем</h3>
+                                <p>Таких ярких детских воспоминаний никто нам уже не заменит</p>
+                            </div>
+                        </div>
+                        <div class="photo-slide">
+                            <img src="f3.jpeg" alt="Мы на свадьбе" class="gallery-photo">
+                            <div class="photo-info">
+                                <h3>Твоя свадьба</h3>
+                                <p> Показывает, как быстро мы стали взрослыми</p>
+                            </div>
+                        </div>
+                        <div class="photo-slide">
+                            <img src="f4.jpeg" alt="Мы взрослеем" class="gallery-photo">
+                            <div class="photo-info">
+                                <h3>Мы взрослеем</h3>
+                                <p>Но остаёмся лучшими друзьями</p>
+                            </div>
+                        </div>
+                        <div class="photo-slide">
+                            <img src="f5.jpeg" alt="Мы сейчас" class="gallery-photo">
+                            <div class="photo-info">
+                                <h3>Мы сейчас</h3>
+                                <p>И навсегда будем рядом!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-controls">
+                        <button class="prev-btn" onclick="changeSlide(-1)">❮</button>
+                        <div class="dots">
+                            <span class="dot active" onclick="currentSlide(1)"></span>
+                            <span class="dot" onclick="currentSlide(2)"></span>
+                            <span class="dot" onclick="currentSlide(3)"></span>
+                            <span class="dot" onclick="currentSlide(4)"></span>
+                            <span class="dot" onclick="currentSlide(5)"></span>
+                        </div>
+                        <button class="next-btn" onclick="changeSlide(1)">❯</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Музыкальный плеер -->
         <section class="music" id="music">
             <div class="music-content">
@@ -113,8 +170,8 @@
                     </div>
                     <div class="fact-card">
                         <div class="fact-icon">💅</div>
-                        <h3>Знает сотни дизайнов ногтей</h3>
-                        <p>Но никак не найдёт тот единственный, который выдержит испытание кейкпопсами! 🧁</p>
+                        <h3>Знаешь сотни дизайнов ногтей</h3>
+                        <p>Но никак не найдёшь тот единственный, который выдержит испытание кейкпопсами! 🧁</p>
                     </div>
                 </div>
             </div>
@@ -157,6 +214,9 @@
     <audio id="bgMusic" loop>
         <source src="qq.mp3" type="audio/mpeg">
     </audio>
+
+    <!-- Подпись автора -->
+    <div class="author-signature">от Жоридзе</div>
 
     <script src="script.js"></script>
 </body>
